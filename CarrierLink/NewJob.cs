@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace CarrierLink
 {
@@ -91,7 +92,7 @@ namespace CarrierLink
 
         private void button5_Click(object sender, EventArgs e)//add job
         {
-            this.Open();
+            //this.Open();
         }
 
         private void button6_Click(object sender, EventArgs e)//view job

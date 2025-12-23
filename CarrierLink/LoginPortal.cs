@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mysqlx;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,52 +17,68 @@ namespace CarrierLink
         {
             InitializeComponent();
         }
-
+        users u1 = new users();
+        Employer e1= new Employer();
         private void button1_Click(object sender, EventArgs e)
         {
+            string username="";
+            string password="";
 
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || textBox1.Text == false)
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
                 errorProvider1.SetError(textBox1, "Invalid username!");
             }
-
-            if (string.IsNullOrWhiteSpace(textBox2.Text) || textBox2.Text == false)
+            else
             {
-                errorProvider1.SetError(textBox1, "Invalid password!");
+                username = textBox1.Text;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                errorProvider1.SetError(textBox2, "Invalid password!");
+            }
+            else
+            {
+                password = textBox2.Text;
             }
 
             if ((string)comboBox1.SelectedItem == "Job Seeker")
             {
-                EmpHome emp = new EmpHome();
-                emp.Show();
+                if (username != "" && password != "")
+                {
+                    if (u1.check(username, password))
+                    {
+                        EmpHome emp=new EmpHome();
+                        emp.Show(); 
+                        this.Close();
+                    }
+                }
+
             }
             else if ((string)comboBox1.SelectedItem == "Employer")
             {
-                CompHome comp = new CompHome();
-                comp.Show();
+                if (username != "" && password != "")
+                {
+                    if (e1.check(username, password))
+                    {
+                        CompHome comp=new CompHome();
+                        comp.Show();
+                        this.Close();
+                    }
+
+                }
             }
-            else
-            {
-                errorProvider1.SetError(comboBox1, "Select appropriate user type!");
-            }
+                else
+                {
+                    errorProvider1.SetError(comboBox1, "Select appropriate user type!");
+                }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if((string) comboBox1.SelectedItem == "Job Seeker")
-            {
-                EmpRegi emp = new EmpRegi();
-                emp.Show();
-            }
-            else if ((string) comboBox1.SelectedItem == "Employer")
-            {
-                CompRegi comp = new CompRegi();
-                comp.Show();
-            }
-            else
-            {
-                MessageBox.Show("Select appropriate user type!", "Error");
-            }
+            EmpOrComp empOrComp = new EmpOrComp();
+            empOrComp.Show();
+            this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)

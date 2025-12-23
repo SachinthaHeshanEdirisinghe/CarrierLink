@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;   
 
 namespace CarrierLink
 {
@@ -17,6 +18,7 @@ namespace CarrierLink
             InitializeComponent();
         }
         job_skills js = new job_skills();
+        string mysql = "server=127.0.0.1;database=carrierlink;user=root;password=;";
         private void button1_Click(object sender, EventArgs e)//srch
         {
             string sql = comboBox1.Text;
@@ -25,10 +27,10 @@ namespace CarrierLink
 
             MySqlConnection conn = new MySqlConnection(mysql);
             conn.Open();
-            string sql = "SELECT * FROM job_skills WHERE Name LIKE @search OR Gender LIKE @search";
+            string query = "SELECT * FROM job_skills WHERE Name LIKE @search";
 
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@search", "%" + t + "%");
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@search",sql);
             MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adp.Fill(dt);

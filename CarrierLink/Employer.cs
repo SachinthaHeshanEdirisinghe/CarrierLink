@@ -3,21 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CarrierLink
 {
-    internal class users
+    internal class Employer
     {
-        public int userID {  get; set; }
-        public string userName { get; set; }
-        public string password { get; set; }
+        public int employerID { get; set; }
+        public string companyName { get; set; }
+        public string jobCategory { get; set; }
+        public string companyLocation { get; set; }
+        public string username { get; set; }
+        public string passwordHash { get; set; }
         public string email { get; set; }
-        public string contactNo { get; set; }
-        public string Qualification { get; set; }
-        public string fullName { get; set; }
 
         string mysqlconn = "server=127.0.0.1;database=carrierlink;user=root;password=;";
 
@@ -28,7 +27,7 @@ namespace CarrierLink
 
             try
             {
-                string sql = "SELECT * FROM users";
+                string sql = "SELECT * FROM employers";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
 
@@ -46,48 +45,50 @@ namespace CarrierLink
             return dt;
         }
 
-        public bool check(string username,string password)
+        public bool check(string username, string password)
         {
             string dbpass = "";
             bool isExist = false;
             MySqlConnection conn = new MySqlConnection(mysqlconn);
-            
-            string sql = "SELECT password FROM users WHERE username = @username";
+
+            string sql = "SELECT password FROM employers WHERE username = @username";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@username", username);
 
             conn.Open();
             object result = cmd.ExecuteScalar();
 
-            if (result != null) {
+            if (result != null)
+            {
                 dbpass = result.ToString();
             }
             conn.Close();
 
-            if (password.Equals(dbpass)) { 
+            if (password.Equals(dbpass))
+            {
                 isExist = true;
             }
 
             return isExist;
         }
 
-        public bool Insert(users u1)
+        public bool Insert(Employer u1)
         {
             bool isSuccess = false;
             MySqlConnection conn = new MySqlConnection(mysqlconn);
 
             try
             {
-                string sql = @"INSERT INTO users (userName, password, email, contactNo, Qualification) VALUES (@userName, @password, @email, @contactNo, @Qualification)";
+                string sql = "INSERT INTO employers (companyName,jobCategory,username,password,companyLocation,email) VALUES (@companyName,@jobCategory,@username,@password,@companyLocation,@email)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@userName", u1.userName);
-                cmd.Parameters.AddWithValue("@password", u1.password);
+                cmd.Parameters.AddWithValue("@companyName", u1.companyName);
+                cmd.Parameters.AddWithValue("@jobCategory", u1.jobCategory);
+                cmd.Parameters.AddWithValue("@username", u1.username);
+                cmd.Parameters.AddWithValue("@password", u1.passwordHash);
+                cmd.Parameters.AddWithValue("@companyLocation", u1.companyLocation);
                 cmd.Parameters.AddWithValue("@email", u1.email);
-                cmd.Parameters.AddWithValue("@contactNo", u1.contactNo);
-                cmd.Parameters.AddWithValue("@Qualification", u1.Qualification);
-                cmd.Parameters.AddWithValue("@fullName", u1.fullName);
 
                 conn.Open();
                 int rows = cmd.ExecuteNonQuery();
@@ -113,4 +114,4 @@ namespace CarrierLink
         }
 
     }
-}
+    }

@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace CarrierLink
 {
@@ -12,7 +13,7 @@ namespace CarrierLink
         public int skillID {  get; set; }
         public string skillName { get; set; }
 
-        string mysqlconn = "server=127.0.0.1;database=it2143;user=root;password=;";
+        string mysqlconn = "server=127.0.0.1;database=carrierlink;user=root;password=;";
 
         public DataTable select()
         {
