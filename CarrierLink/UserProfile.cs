@@ -61,8 +61,8 @@ namespace CarrierLink
             fname.Text = u1.fullName;
             email.Text = u1.email;
             contactnum.Text=u1.contactNo;
-            qualificationbox.Text=u1.Qualification;
-            skillbox.Text = "unser work";
+            qualificationbox.Items.Add(u1.Qualification);
+            skillbox.Items.Add(u1.skill);
 
         }
     }

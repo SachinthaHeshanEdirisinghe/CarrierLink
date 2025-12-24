@@ -29,7 +29,7 @@ namespace CarrierLink
 
             try
             {
-                string sql = "SELECT * FROM jobs";
+                string sql = "SELECT jobTitle,description,salaryRange,location,skill FROM jobs";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
 
@@ -49,7 +49,6 @@ namespace CarrierLink
         public int GetEmployerID(string username) {
             MySqlConnection conn = new MySqlConnection(mysqlconn);
             int empId=-1;
-            MessageBox.Show(username);
             try
             {
                 string sql = "select empId from employers where username=@username";
@@ -84,7 +83,6 @@ namespace CarrierLink
         {
             bool isSuccess = false;
             MySqlConnection conn = new MySqlConnection(mysqlconn);
-            MessageBox.Show(j1.GetEmployerID(username).ToString());
 
             try
             {

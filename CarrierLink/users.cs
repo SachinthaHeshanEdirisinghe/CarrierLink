@@ -18,6 +18,7 @@ namespace CarrierLink
         public string contactNo { get; set; }
         public string Qualification { get; set; }
         public string fullName { get; set; }
+        public string skill { get; set; }
 
         string mysqlconn = "server=127.0.0.1;database=carrierlink;user=root;password=;";
         public void getUser(string username)
@@ -37,8 +38,9 @@ namespace CarrierLink
                 userName = dt.Rows[0]["userName"].ToString();
                 email= dt.Rows[0]["email"].ToString();
                 contactNo = dt.Rows[0]["contactNo"].ToString() ;
-                Qualification= dt.Rows[0]["Qulification"].ToString();
+                Qualification= dt.Rows[0]["Qualification"].ToString();
                 fullName= dt.Rows[0]["fullName"].ToString();
+                skill= dt.Rows[0]["skill"].ToString();
             }
             catch
             {
@@ -107,7 +109,7 @@ namespace CarrierLink
 
             try
             {
-                string sql = @"INSERT INTO users (userName, password, email, contactNo, Qualification,fullName) VALUES (@userName, @password, @email, @contactNo, @Qualification,@fullName)";
+                string sql = @"INSERT INTO users (userName, password, email, contactNo, Qualification,fullName,skill) VALUES (@userName, @password, @email, @contactNo, @Qualification,@fullName,@skill)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -117,6 +119,7 @@ namespace CarrierLink
                 cmd.Parameters.AddWithValue("@contactNo", u1.contactNo);
                 cmd.Parameters.AddWithValue("@Qualification", u1.Qualification);
                 cmd.Parameters.AddWithValue("@fullName", u1.fullName);
+                cmd.Parameters.AddWithValue("@skill", u1.skill);
 
                 conn.Open();
                 int rows = cmd.ExecuteNonQuery();

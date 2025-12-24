@@ -203,21 +203,13 @@
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "Western Province",
-            "",
             "Central Province",
-            "",
             "Southern Province",
-            "",
             "Northern Province",
-            "",
             "Eastern Province",
-            "",
             "North Western Province",
-            "",
             "North Central Province",
-            "",
             "Uva Province",
-            "",
             "Sabaragamuwa Province"});
             this.comboBox3.Location = new System.Drawing.Point(485, 98);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(4);

@@ -52,6 +52,10 @@ namespace CarrierLink
                         emp.Show(); 
                         this.Hide();
                     }
+                    else
+                    {
+                        MessageBox.Show("Invalid Login credintials", "error",MessageBoxButtons.OKCancel,MessageBoxIcon.Error);
+                    }
                 }
 
             }
@@ -64,6 +68,10 @@ namespace CarrierLink
                         CompHome comp=new CompHome(username);
                         comp.Show();
                         this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Login credintials","error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                     }
 
                 }

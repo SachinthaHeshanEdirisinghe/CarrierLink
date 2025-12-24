@@ -50,7 +50,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(176, 40);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Employer";
+            this.button1.Text = "Job seeker";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -60,7 +60,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(176, 37);
             this.button2.TabIndex = 3;
-            this.button2.Text = "Compnay";
+            this.button2.Text = "Company";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 

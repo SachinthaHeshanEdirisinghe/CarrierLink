@@ -85,7 +85,6 @@ namespace CarrierLink
                 }
 
                 string result = string.Join(", ", selectedItems);
-                MessageBox.Show(result);
                 js.jobTitle = textBox1.Text;
                 js.description = textBox2.Text;
                 js.salaryRange = textBox4.Text;

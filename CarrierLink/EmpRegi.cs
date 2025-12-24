@@ -19,7 +19,6 @@ namespace CarrierLink
             InitializeComponent();
         }
         users u1 = new users();
-        skills s1 = new skills();
         private void button1_Click(object sender, EventArgs e)
         {
             bool isValid = true;
@@ -77,25 +76,28 @@ namespace CarrierLink
                 u1.password = textBox6.Text;
                 u1.Qualification = textBox5.Text;
 
-                s1.skillName = checkedListBox1.CheckedItems.ToString();
+                List<string> selectedItems = new List<string>();
+
+                foreach (var item in checkedListBox1.CheckedItems)
+                {
+                    selectedItems.Add(item.ToString());
+                }
+
+                string result = string.Join(", ", selectedItems);
+                u1.skill = result;
 
                 bool success = u1.Insert(u1);
-                bool success2 = s1.Insert(s1);
 
-                if (success && success2)
+                if (success )
                 {
                     LoginPortal emp = new LoginPortal();
                     emp.Show();
                     this.Close();
-                    MessageBox.Show("Employee details added successfully", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (success)
-                {
-                    MessageBox.Show("Employee details added successfully", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("User details added successfully", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Employee details are not added", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("User details are not added", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 
             }

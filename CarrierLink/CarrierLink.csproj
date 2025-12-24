@@ -115,7 +115,6 @@
     <Compile Include="JobForm.Designer.cs">
       <DependentUpon>JobForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="JobSkills.cs" />
     <Compile Include="LoginPortal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,7 +157,6 @@
     <Compile Include="NewJob.Designer.cs">
       <DependentUpon>NewJob.cs</DependentUpon>
     </Compile>
-    <Compile Include="skills.cs" />
     <Compile Include="users.cs" />
     <Compile Include="UserProfile.cs">
       <SubType>Form</SubType>
@@ -168,7 +166,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserSkills.cs" />
     <EmbeddedResource Include="EmployerProfile.resx">
       <DependentUpon>EmployerProfile.cs</DependentUpon>
     </EmbeddedResource>

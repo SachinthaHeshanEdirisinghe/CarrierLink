@@ -19,29 +19,32 @@ namespace CarrierLink
             InitializeComponent();
             this.username = username;
         }
-        Employer employer=new Employer();
+        DataTable dt;
         string mysql = "server=127.0.0.1;database=carrierlink;user=root;password=;";
         private void button1_Click(object sender, EventArgs e)//srch
         {
-            
+            dt.Clear();
             string category = comboBox2.Text;
             string location = comboBox3.Text;
 
             MySqlConnection conn = new MySqlConnection(mysql);
             conn.Open();
-            string query = "SELECT * FROM jobs inner join employers on jobs.employerID=employers.empId WHERE employers.jobCategory=@category OR jobs.location=@location";
+            string query = "SELECT jobTitle,description,salaryRange,location,skill FROM jobs inner join employers on jobs.empId=employers.empId WHERE employers.jobCategory=@category AND jobs.location=@location";
 
             MySqlCommand cmd = new MySqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@category",category);
             cmd.Parameters.AddWithValue("@location",location);
             MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
             adp.Fill(dt);
+            conn.Close();
+            dataGridView1.DataSource = dt;
+            
         }
+        
 
         private void button3_Click(object sender, EventArgs e)
         {
-            LoginPortal login = new LoginPortal();
+            EmpHome login = new EmpHome(username);
             login.Show();
             this.Close();
         }
@@ -73,7 +76,7 @@ namespace CarrierLink
         private void SearchForm_Load(object sender, EventArgs e)
         {
             jobs job=new jobs();
-            DataTable dt = job.select();
+            dt = job.select();
             dataGridView1.DataSource = dt;
         }
     }
