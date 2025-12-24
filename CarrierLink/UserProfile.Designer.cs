@@ -42,9 +42,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.qualificationbox = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.fname = new System.Windows.Forms.Label();
+            this.email = new System.Windows.Forms.Label();
+            this.contactnum = new System.Windows.Forms.Label();
+            this.skillbox = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +57,7 @@
             this.pictureBox6.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
             this.pictureBox6.Location = new System.Drawing.Point(75, 62);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(139, 73);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -65,7 +68,7 @@
             // 
             this.button8.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.Location = new System.Drawing.Point(68, 396);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(152, 38);
             this.button8.TabIndex = 21;
@@ -77,7 +80,7 @@
             // 
             this.button7.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.Location = new System.Drawing.Point(68, 341);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(152, 38);
             this.button7.TabIndex = 20;
@@ -89,7 +92,7 @@
             // 
             this.button6.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.Location = new System.Drawing.Point(68, 286);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(152, 38);
             this.button6.TabIndex = 19;
@@ -99,9 +102,10 @@
             // 
             // button5
             // 
+            this.button5.Enabled = false;
             this.button5.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Location = new System.Drawing.Point(68, 230);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(152, 38);
             this.button5.TabIndex = 18;
@@ -126,7 +130,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(291, 518);
             this.pictureBox1.TabIndex = 16;
@@ -152,9 +156,9 @@
             this.label3.Location = new System.Drawing.Point(349, 91);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 21);
+            this.label3.Size = new System.Drawing.Size(158, 21);
             this.label3.TabIndex = 24;
-            this.label3.Text = "Full name:";
+            this.label3.Text = "Full name            :";
             // 
             // label4
             // 
@@ -163,9 +167,9 @@
             this.label4.Location = new System.Drawing.Point(349, 127);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 21);
+            this.label4.Size = new System.Drawing.Size(160, 21);
             this.label4.TabIndex = 25;
-            this.label4.Text = "Email:";
+            this.label4.Text = "Email                   :";
             // 
             // label5
             // 
@@ -174,9 +178,9 @@
             this.label5.Location = new System.Drawing.Point(349, 162);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(150, 21);
+            this.label5.Size = new System.Drawing.Size(160, 21);
             this.label5.TabIndex = 26;
-            this.label5.Text = "Contact Number:";
+            this.label5.Text = "Contact Number  :";
             // 
             // label6
             // 
@@ -185,9 +189,9 @@
             this.label6.Location = new System.Drawing.Point(349, 198);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(124, 21);
+            this.label6.Size = new System.Drawing.Size(159, 21);
             this.label6.TabIndex = 27;
-            this.label6.Text = "Qualification:";
+            this.label6.Text = "Qualification       :";
             // 
             // label7
             // 
@@ -196,38 +200,27 @@
             this.label7.Location = new System.Drawing.Point(352, 325);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 21);
+            this.label7.Size = new System.Drawing.Size(158, 21);
             this.label7.TabIndex = 28;
-            this.label7.Text = "Skills:";
+            this.label7.Text = "Skills                   :";
             // 
-            // listBox1
+            // qualificationbox
             // 
-            this.listBox1.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 21;
-            this.listBox1.Location = new System.Drawing.Point(481, 198);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(584, 88);
-            this.listBox1.TabIndex = 29;
-            // 
-            // listBox2
-            // 
-            this.listBox2.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 21;
-            this.listBox2.Location = new System.Drawing.Point(421, 325);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(644, 109);
-            this.listBox2.TabIndex = 30;
+            this.qualificationbox.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qualificationbox.FormattingEnabled = true;
+            this.qualificationbox.ItemHeight = 24;
+            this.qualificationbox.Location = new System.Drawing.Point(533, 198);
+            this.qualificationbox.Margin = new System.Windows.Forms.Padding(4);
+            this.qualificationbox.Name = "qualificationbox";
+            this.qualificationbox.Size = new System.Drawing.Size(532, 76);
+            this.qualificationbox.TabIndex = 29;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.LightSeaGreen;
             this.button1.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold);
             this.button1.Location = new System.Drawing.Point(629, 455);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(185, 48);
             this.button1.TabIndex = 31;
@@ -235,14 +228,55 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // fname
+            // 
+            this.fname.AutoSize = true;
+            this.fname.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fname.Location = new System.Drawing.Point(529, 88);
+            this.fname.Name = "fname";
+            this.fname.Size = new System.Drawing.Size(0, 24);
+            this.fname.TabIndex = 32;
+            // 
+            // email
+            // 
+            this.email.AutoSize = true;
+            this.email.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.email.Location = new System.Drawing.Point(529, 126);
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(0, 24);
+            this.email.TabIndex = 33;
+            // 
+            // contactnum
+            // 
+            this.contactnum.AutoSize = true;
+            this.contactnum.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contactnum.Location = new System.Drawing.Point(529, 162);
+            this.contactnum.Name = "contactnum";
+            this.contactnum.Size = new System.Drawing.Size(0, 24);
+            this.contactnum.TabIndex = 34;
+            // 
+            // skillbox
+            // 
+            this.skillbox.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.skillbox.FormattingEnabled = true;
+            this.skillbox.ItemHeight = 24;
+            this.skillbox.Location = new System.Drawing.Point(533, 325);
+            this.skillbox.Margin = new System.Windows.Forms.Padding(4);
+            this.skillbox.Name = "skillbox";
+            this.skillbox.Size = new System.Drawing.Size(532, 76);
+            this.skillbox.TabIndex = 35;
+            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1092, 518);
+            this.Controls.Add(this.skillbox);
+            this.Controls.Add(this.contactnum);
+            this.Controls.Add(this.email);
+            this.Controls.Add(this.fname);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.qualificationbox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -256,9 +290,10 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserProfile";
             this.Text = "Form9";
+            this.Load += new System.EventHandler(this.UserProfile_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -281,8 +316,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox qualificationbox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label fname;
+        private System.Windows.Forms.Label email;
+        private System.Windows.Forms.Label contactnum;
+        private System.Windows.Forms.ListBox skillbox;
     }
 }

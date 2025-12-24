@@ -48,9 +48,9 @@ namespace CarrierLink
                 {
                     if (u1.check(username, password))
                     {
-                        EmpHome emp=new EmpHome();
+                        EmpHome emp=new EmpHome(username);
                         emp.Show(); 
-                        this.Close();
+                        this.Hide();
                     }
                 }
 
@@ -61,9 +61,9 @@ namespace CarrierLink
                 {
                     if (e1.check(username, password))
                     {
-                        CompHome comp=new CompHome();
+                        CompHome comp=new CompHome(username);
                         comp.Show();
-                        this.Close();
+                        this.Hide();
                     }
 
                 }

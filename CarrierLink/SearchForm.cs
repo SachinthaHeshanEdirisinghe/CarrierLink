@@ -13,24 +13,27 @@ namespace CarrierLink
 {
     public partial class SearchForm : Form
     {
-        public SearchForm()
+        string username;
+        public SearchForm(string username)
         {
             InitializeComponent();
+            this.username = username;
         }
-        job_skills js = new job_skills();
+        Employer employer=new Employer();
         string mysql = "server=127.0.0.1;database=carrierlink;user=root;password=;";
         private void button1_Click(object sender, EventArgs e)//srch
         {
-            string sql = comboBox1.Text;
-            string sql2 = comboBox2.Text;
-            string sql3 = comboBox3.Text;
+            
+            string category = comboBox2.Text;
+            string location = comboBox3.Text;
 
             MySqlConnection conn = new MySqlConnection(mysql);
             conn.Open();
-            string query = "SELECT * FROM job_skills WHERE Name LIKE @search";
+            string query = "SELECT * FROM jobs inner join employers on jobs.employerID=employers.empId WHERE employers.jobCategory=@category OR jobs.location=@location";
 
             MySqlCommand cmd = new MySqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@search",sql);
+            cmd.Parameters.AddWithValue("@category",category);
+            cmd.Parameters.AddWithValue("@location",location);
             MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adp.Fill(dt);
@@ -45,15 +48,14 @@ namespace CarrierLink
 
         private void button5_Click(object sender, EventArgs e)
         {
-            UserProfile prof = new UserProfile();
+            UserProfile prof = new UserProfile(username);
             prof.Show();
             this.Hide();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            SearchForm srch = new SearchForm();
-            srch.Show();
+            
         }
 
         private void button7_Click(object sender, EventArgs e)//mtchd job
@@ -70,7 +72,8 @@ namespace CarrierLink
 
         private void SearchForm_Load(object sender, EventArgs e)
         {
-            DataTable dt = js.select();
+            jobs job=new jobs();
+            DataTable dt = job.select();
             dataGridView1.DataSource = dt;
         }
     }

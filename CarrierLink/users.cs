@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CarrierLink
 {
-    internal class users
+    public class users
     {
         public int userID {  get; set; }
         public string userName { get; set; }
@@ -20,6 +20,35 @@ namespace CarrierLink
         public string fullName { get; set; }
 
         string mysqlconn = "server=127.0.0.1;database=carrierlink;user=root;password=;";
+        public void getUser(string username)
+        {
+            MySqlConnection conn = new MySqlConnection(mysqlconn);
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT * FROM users  WHERE username = @username";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@username", username);
+                MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+
+                conn.Open();
+                adp.Fill(dt);
+                userName = dt.Rows[0]["userName"].ToString();
+                email= dt.Rows[0]["email"].ToString();
+                contactNo = dt.Rows[0]["contactNo"].ToString() ;
+                Qualification= dt.Rows[0]["Qulification"].ToString();
+                fullName= dt.Rows[0]["fullName"].ToString();
+            }
+            catch
+            {
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
 
         public DataTable select()
         {
@@ -78,7 +107,7 @@ namespace CarrierLink
 
             try
             {
-                string sql = @"INSERT INTO users (userName, password, email, contactNo, Qualification) VALUES (@userName, @password, @email, @contactNo, @Qualification)";
+                string sql = @"INSERT INTO users (userName, password, email, contactNo, Qualification,fullName) VALUES (@userName, @password, @email, @contactNo, @Qualification,@fullName)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 

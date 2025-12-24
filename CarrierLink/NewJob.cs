@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,23 +9,24 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CarrierLink
 {
     public partial class NewJob : Form
     {
-        public NewJob()
+        string username;
+        public NewJob(string username)
         {
             InitializeComponent();
+            this.username = username;
         }
         jobs js = new jobs();
-        skills skills = new skills();
         private void button2_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
             textBox2.Text = "";
-            textBox3.Text = "";
+            comboBox3.SelectedItem = null;
             textBox4.Text = "";
             foreach (int i in checkedListBox1.CheckedIndices.Cast<int>().ToList())
             {
@@ -41,53 +43,72 @@ namespace CarrierLink
 
         private void button1_Click(object sender, EventArgs e)//post job
         {
+            bool isvalid = true;
 
-            js.jobTitle = textBox1.Text;
-            js.description = textBox2.Text;
-            js.salaryRange = textBox4.Text;
-            js.location = textBox3.Text;
-
-            skills.skillName = checkedListBox1.CheckedItems.ToString();
-
-            bool success = js.Insert(js);
-            bool success2 = skills.Insert(skills);
-
-            if (success && success2)
-            {
-                MessageBox.Show("Employee details added successfully", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else if (success)
-            {
-                MessageBox.Show("Employee details added successfully", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
 
             if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
                 errorProvider1.SetError(textBox1, "Job Title is required!");
+                isvalid = false;
             }
             else if (!Regex.IsMatch(textBox1.Text, @"^[A-Za-z\s]+$"))
             {
                 errorProvider1.SetError(textBox1, "Job Title must contain only letters!");
+                isvalid = false;
             }
 
             if (string.IsNullOrWhiteSpace(textBox2.Text))
             {
                 errorProvider1.SetError(textBox2, "Job Desciption is required!");
+                isvalid = false;
             }
 
             if (string.IsNullOrWhiteSpace(textBox4.Text))
             {
                 errorProvider1.SetError(textBox4, "Salary Range is required!");
+                isvalid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            if (comboBox3.SelectedItem ==null)
             {
-                errorProvider1.SetError(textBox3, "Job Location is required!");
+                errorProvider1.SetError(comboBox3, "Job Location is required!");
+                isvalid = false;
             }
+            if (isvalid)
+            {
 
-            JobForm jb = new JobForm();
-            jb.Show();
-            this.Close();
+                List<string> selectedItems = new List<string>();
+
+                foreach (var item in checkedListBox1.CheckedItems)
+                {
+                    selectedItems.Add(item.ToString());
+                }
+
+                string result = string.Join(", ", selectedItems);
+                MessageBox.Show(result);
+                js.jobTitle = textBox1.Text;
+                js.description = textBox2.Text;
+                js.salaryRange = textBox4.Text;
+                js.location = comboBox3.SelectedItem.ToString();
+                js.skill = result;
+                bool success = js.Insert(js, username);
+
+                if (success)
+                {
+                    MessageBox.Show("Job added successfully", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    JobForm jb = new JobForm(username);
+                    jb.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Job Failed", "error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                }
+
+                
+                
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)//add job
@@ -97,7 +118,7 @@ namespace CarrierLink
 
         private void button6_Click(object sender, EventArgs e)//view job
         {
-            JobForm jb = new JobForm();
+            JobForm jb = new JobForm(username);
             jb.Show();
             this.Close();
         }
@@ -109,7 +130,7 @@ namespace CarrierLink
 
         private void button8_Click(object sender, EventArgs e)
         {
-            LoginPortal login = new LoginPortal();
+            CompHome login = new CompHome(username);
             login.Show();
             this.Close();
         }

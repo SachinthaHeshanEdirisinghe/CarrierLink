@@ -12,8 +12,14 @@ namespace CarrierLink
 {
     public partial class UserProfile : Form
     {
-        public UserProfile()
+        
+        string username;
+        public UserProfile(string username)
         {
+            InitializeComponent();
+            this.username = username;
+        }
+        public UserProfile(){
             InitializeComponent();
         }
 
@@ -25,20 +31,19 @@ namespace CarrierLink
 
         private void button5_Click(object sender, EventArgs e)
         {
-            UserProfile prof = new UserProfile();
-            prof.Show();
+            
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            SearchForm srch = new SearchForm();
+            SearchForm srch = new SearchForm(username);
             srch.Show();
             this.Hide();
         }
 
         private void button7_Click(object sender, EventArgs e)//mtchd job
         {
-            SearchForm srch = new SearchForm();
+            SearchForm srch = new SearchForm(username);
             srch.Show();
         }
 
@@ -47,6 +52,18 @@ namespace CarrierLink
             LoginPortal login = new LoginPortal();
             login.Show();
             this.Close();
+        }
+
+        private void UserProfile_Load(object sender, EventArgs e)
+        {
+            users u1=new users();
+            u1.getUser(username);
+            fname.Text = u1.fullName;
+            email.Text = u1.email;
+            contactnum.Text=u1.contactNo;
+            qualificationbox.Text=u1.Qualification;
+            skillbox.Text = "unser work";
+
         }
     }
 }

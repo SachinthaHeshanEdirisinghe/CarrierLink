@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarrierLink
 {
-    internal class Employer
+    public class Employer
     {
         public int employerID { get; set; }
         public string companyName { get; set; }

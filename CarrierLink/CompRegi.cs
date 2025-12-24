@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CarrierLink
 {
@@ -43,9 +44,9 @@ namespace CarrierLink
                     isValid = false;
                 }
 
-                if (string.IsNullOrWhiteSpace(textBox2.Text))
+                if (string.IsNullOrWhiteSpace(comboBox1.SelectedItem.ToString()))
                 {
-                    errorProvider1.SetError(textBox2, "Job Category is required!");
+                    errorProvider1.SetError(comboBox1, "Job Category is required!");
                     isValid = false;
                 }
 
@@ -66,21 +67,21 @@ namespace CarrierLink
                     isValid = false;
                 }
 
-                if (string.IsNullOrWhiteSpace(textBox5.Text))
+                if (string.IsNullOrWhiteSpace(comboBox2.SelectedItem.ToString()))
                 {
-                    errorProvider1.SetError(textBox5, "Company location is required!");
+                    errorProvider1.SetError(comboBox2, "Company location is required!");
                     isValid = false;
                 }
                 if (isValid)
                 {
                         u1.companyName = textBox3.Text;
                         u1.email = textBox1.Text;
-                        u1.jobCategory = textBox2.Text;
+                        u1.jobCategory = comboBox1.SelectedItem.ToString();
                         u1.username = textBox4.Text;
                         u1.passwordHash = textBox6.Text;
-                        u1.companyLocation = textBox5.Text;
+                        u1.companyLocation = comboBox2.SelectedItem.ToString();
 
-                    bool success = u1.Insert(u1);
+                bool success = u1.Insert(u1);
                     if (success)
                     {
                         LoginPortal comp = new LoginPortal();
@@ -99,10 +100,10 @@ namespace CarrierLink
         private void button2_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            textBox2.Text = "";
+            comboBox1.SelectedItem = null;
             textBox3.Text = "";
             textBox4.Text = "";
-            textBox5.Text = "";
+            comboBox2.SelectedItem = null;
             textBox6.Text = "";
         }
 

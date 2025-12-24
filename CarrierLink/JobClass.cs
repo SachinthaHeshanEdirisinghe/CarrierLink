@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 
 namespace CarrierLink
 {
@@ -16,8 +18,9 @@ namespace CarrierLink
         public string description { get; set; }
         public string salaryRange { get; set; }
         public string location { get; set; }
+        public string skill {  get; set; }
 
-        string mysqlconn = "server=127.0.0.1;database=it2143;user=root;password=;";
+        string mysqlconn = "server=127.0.0.1;database=carrierlink;user=root;password=;";
 
         public DataTable select()
         {
@@ -43,24 +46,59 @@ namespace CarrierLink
 
             return dt;
         }
-
-        public bool Insert(jobs j1)
-        {
-            bool isSuccess = false;
+        public int GetEmployerID(string username) {
             MySqlConnection conn = new MySqlConnection(mysqlconn);
-
+            int empId=-1;
+            MessageBox.Show(username);
             try
             {
-                string sql = "INSERT INTO jobs(employerID,jobTitle,description,salaryRange,location)" +
-                    "VALUES(@employerID,@jobTitle,@description,@salaryRange,@location)";
+                string sql = "select empId from employers where username=@username";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@employerID", j1.employerID);
+                cmd.Parameters.AddWithValue("@username", username);
+
+
+                conn.Open();
+                Object result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    empId = Convert.ToInt32(result);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                
+                conn.Close();
+                
+            }
+            return empId;
+        }
+
+        public bool Insert(jobs j1,string username)
+        {
+            bool isSuccess = false;
+            MySqlConnection conn = new MySqlConnection(mysqlconn);
+            MessageBox.Show(j1.GetEmployerID(username).ToString());
+
+            try
+            {
+                string sql = "INSERT INTO jobs(empId,jobTitle,description,salaryRange,location,skill)" +
+                    "VALUES(@empId,@jobTitle,@description,@salaryRange,@location,@skill)";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                
+                cmd.Parameters.AddWithValue("@empId", j1.GetEmployerID(username));
                 cmd.Parameters.AddWithValue("@jobTitle", j1.jobTitle);
                 cmd.Parameters.AddWithValue("@description", j1.description);
                 cmd.Parameters.AddWithValue("@salaryRange", j1.salaryRange);
                 cmd.Parameters.AddWithValue("@location", j1.location);
+                cmd.Parameters.AddWithValue("@skill", j1.skill);
 
 
                 conn.Open();

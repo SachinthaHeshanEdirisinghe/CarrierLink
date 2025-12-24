@@ -12,20 +12,23 @@ namespace CarrierLink
 {
     public partial class EmpHome : Form
     {
-        public EmpHome()
+        
+        string username;
+        public EmpHome(string username)
         {
             InitializeComponent();
+            this.username=username;
         }
 
         private void button1_Click(object sender, EventArgs e)//Find job
         {
-            SearchForm srch = new SearchForm();
+            SearchForm srch = new SearchForm(username);
             srch.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)//srch job
         {
-            SearchForm srch = new SearchForm();
+            SearchForm srch = new SearchForm(username);
             srch.Show();
         }
 
@@ -41,13 +44,13 @@ namespace CarrierLink
 
         private void button2_Click(object sender, EventArgs e)
         {
-            UserProfile prof = new UserProfile();
+            UserProfile prof = new UserProfile(username);
             prof.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            UserProfile prof = new UserProfile();
+            UserProfile prof = new UserProfile(username);
             prof.Show();
         }
 
@@ -63,6 +66,11 @@ namespace CarrierLink
             LoginPortal login = new LoginPortal();
             login.Show();
             this.Close();
+        }
+
+        private void EmpHome_Load(object sender, EventArgs e)
+        {
+            label2.Text = "Welcome , "+username +" !";
         }
     }
 }

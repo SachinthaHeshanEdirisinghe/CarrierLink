@@ -91,6 +91,7 @@
             // 
             // button7
             // 
+            this.button7.Enabled = false;
             this.button7.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.Location = new System.Drawing.Point(66, 340);
             this.button7.Margin = new System.Windows.Forms.Padding(4);
@@ -103,6 +104,7 @@
             // 
             // button6
             // 
+            this.button6.Enabled = false;
             this.button6.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.Location = new System.Drawing.Point(66, 285);
             this.button6.Margin = new System.Windows.Forms.Padding(4);

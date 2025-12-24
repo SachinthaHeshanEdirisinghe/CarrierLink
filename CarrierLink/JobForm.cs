@@ -12,9 +12,11 @@ namespace CarrierLink
 {
     public partial class JobForm : Form
     {
-        public JobForm()
+        string username;
+        public JobForm(string username)
         {
             InitializeComponent();
+            this.username = username;
         }
         jobs js = new jobs();
         private void button3_Click(object sender, EventArgs e)
@@ -26,7 +28,7 @@ namespace CarrierLink
 
         private void button5_Click(object sender, EventArgs e)//add job
         {
-            NewJob nj = new NewJob();
+            NewJob nj = new NewJob(username);
             nj.Show();
             this.Hide();
         }

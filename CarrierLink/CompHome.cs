@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Tls.Crypto.Impl.BC;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,45 +13,46 @@ namespace CarrierLink
 {
     public partial class CompHome : Form
     {
-        public CompHome()
+        
+        string username;
+        public CompHome(string username)
         {
             InitializeComponent();
+            this.username = username;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            NewJob job = new NewJob();
+            NewJob job = new NewJob(username);
             job.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)//job posting
         {
-            JobForm jb = new JobForm();
+            JobForm jb = new JobForm(username);
             jb.Show();
         }
 
         private void button6_Click_1(object sender, EventArgs e)//view job
         {
-            JobForm jb = new JobForm();
+            JobForm jb = new JobForm(username);
             jb.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)//find candidate
         {
-            SearchForm srch = new SearchForm();
-            srch.Show();
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            UserProfile prof = new UserProfile();
+            EmployerProfile prof = new EmployerProfile(username);
             prof.Show();
         }
 
         private void button7_Click(object sender, EventArgs e)//mtchd job
         {
-            SearchForm srch = new SearchForm();
-            srch.Show();
+            
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -58,6 +60,16 @@ namespace CarrierLink
             LoginPortal login = new LoginPortal();
             login.Show();
             this.Close();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CompHome_Load(object sender, EventArgs e)
+        {
+            label2.Text = "Welcome, " + username + " !";
         }
     }
 }
